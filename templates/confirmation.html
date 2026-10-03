@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Appointment Confirmed — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container confirmation-page">
+
+    <div class="confirmation-card">
+
+        <div class="success-icon">✓</div>
+
+        <div class="eyebrow">SMARTCARE · CONFIRMED</div>
+
+        <h1>Appointment Confirmed</h1>
+
+        <p>Your appointment has been added to the hospital queue.</p>
+
+        <div class="appointment-summary">
+
+            <div>
+                <span>Patient</span>
+                <strong>{{ appointment.name }}</strong>
+            </div>
+
+            <div>
+                <span>Doctor</span>
+                <strong>{{ appointment.doctor }}</strong>
+            </div>
+
+            <div>
+                <span>Department</span>
+                <strong>{{ appointment.department }}</strong>
+            </div>
+
+            <div>
+                <span>Date</span>
+                <strong>{{ appointment.date }}</strong>
+            </div>
+
+            <div>
+                <span>Time</span>
+                <strong>{{ appointment.time }}</strong>
+            </div>
+
+        </div>
+
+        <div class="token-box">
+
+            <span>Your Queue Token</span>
+
+            <strong>{{ appointment.token }}</strong>
+
+            <div class="queue-info">
+
+                <div>
+                    <small>Current position</small>
+                    <b>{{ appointment.position }}</b>
+                </div>
+
+                <div>
+                    <small>Estimated wait</small>
+                    <b>{{ appointment.wait_minutes }} min</b>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="status-box">
+            <span class="status-dot"></span>
+            <strong id="appointment-status">
+                {{ appointment.status }}
+            </strong>
+        </div>
+
+        <p class="small-note">
+            Your queue status updates automatically.
+        </p>
+
+        <a class="primary-btn"
+           href="{{ url_for('track_appointment', appointment_id=appointment.id) }}">
+            Track My Queue →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
