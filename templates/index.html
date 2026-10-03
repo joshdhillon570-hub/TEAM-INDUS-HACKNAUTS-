@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block title %}SmartCare — Less waiting. More care.{% endblock %}
+
+{% block content %}
+
+<section class="hero container">
+    <div class="hero-copy">
+        <div class="eyebrow">GNDEC HACKATHON · CONNECTED HOSPITAL FLOW</div>
+
+        <h1>
+            Less waiting.<br>
+            <span>More care.</span>
+        </h1>
+
+        <p>
+            SmartCare connects patients, appointments, triage and doctors
+            in one simple hospital system.
+        </p>
+
+        <div class="hero-actions">
+            <a class="primary-btn" href="{{ url_for('appointment') }}">
+                Book Appointment <span>→</span>
+            </a>
+
+            <a class="text-btn" href="{{ url_for('doctor_login') }}">
+                Doctor Dashboard
+            </a>
+        </div>
+    </div>
+
+    <div class="flow-card">
+        <div class="mini-label">THE SMARTCARE JOURNEY</div>
+
+        <div class="flow-step">
+            <b>01</b>
+            <span>Online appointment</span>
+        </div>
+
+        <div class="flow-line"></div>
+
+        <div class="flow-step">
+            <b>02</b>
+            <span>Smart preliminary triage</span>
+        </div>
+
+        <div class="flow-line"></div>
+
+        <div class="flow-step">
+            <b>03</b>
+            <span>Connected queue</span>
+        </div>
+
+        <div class="flow-line"></div>
+
+        <div class="flow-step">
+            <b>04</b>
+            <span>Doctor sees patient information</span>
+        </div>
+    </div>
+</section>
+
+
+<section class="container section">
+
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">PROBLEM → SOLUTION</div>
+
+            <h2>
+                Disconnected steps create unnecessary waiting.
+            </h2>
+        </div>
+
+        <p>
+            SmartCare brings the steps together so the patient and doctor
+            work from the same appointment data.
+        </p>
+    </div>
+
+
+    <div class="problem-grid">
+
+        <article>
+            <span>01</span>
+
+            <h3>
+                Patients wait without knowing when they will be seen.
+            </h3>
+
+            <p class="solution">
+                <b>Solution</b>
+                Live appointment and queue tracking.
+            </p>
+        </article>
+
+
+        <article>
+            <span>02</span>
+
+            <h3>
+                Doctors waste time searching for patient information.
+            </h3>
+
+            <p class="solution">
+                <b>Solution</b>
+                Connected patient records.
+            </p>
+        </article>
+
+
+        <article>
+            <span>03</span>
+
+            <h3>
+                Urgent patients can get lost in a normal queue.
+            </h3>
+
+            <p class="solution">
+                <b>Solution</b>
+                Smart preliminary triage.
+            </p>
+        </article>
+
+
+        <article>
+            <span>04</span>
+
+            <h3>
+                Patients are unsure what happens after consultation.
+            </h3>
+
+            <p class="solution">
+                <b>Solution</b>
+                Connected follow-up journey.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="journey-band">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            ONE CONNECTED JOURNEY
+        </div>
+
+        <div class="journey">
+
+            <span>LONG WAITING</span>
+            <i>↓</i>
+
+            <span>ONLINE APPOINTMENT</span>
+            <i>↓</i>
+
+            <span>SMART TRIAGE</span>
+            <i>↓</i>
+
+            <span>CONNECTED QUEUE</span>
+            <i>↓</i>
+
+            <span>CONSULTATION</span>
+            <i>↓</i>
+
+            <span>FOLLOW-UP</span>
+
+        </div>
+
+        <h2>
+            From waiting to care, in one connected journey.
+        </h2>
+
+        <p>
+            SmartCare aims to reduce unnecessary delays by connecting
+            the patient and doctor sides of the same system.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="container cta-section">
+
+    <div>
+
+        <div class="eyebrow">
+            START THE DEMO
+        </div>
+
+        <h2>
+            Book a patient appointment and watch it appear in the doctor queue.
+        </h2>
+
+    </div>
+
+    <a class="primary-btn" href="{{ url_for('appointment') }}">
+        Book Appointment →
+    </a>
+
+</section>
+
+{% endblock %}
