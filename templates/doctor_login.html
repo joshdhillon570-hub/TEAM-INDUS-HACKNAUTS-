@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Login — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container login-page">
+
+    <div class="login-card">
+
+        <div class="eyebrow">SMARTCARE · DOCTOR SIDE</div>
+
+        <h1>Doctor Dashboard</h1>
+
+        <p>
+            Sign in to view today's appointments, manage the queue
+            and access patient information.
+        </p>
+
+        <div class="demo-login">
+            <strong>Demo Login</strong>
+            <span>Doctor ID: doctor</span>
+            <span>Password: smartcare</span>
+        </div>
+
+        <form method="POST">
+
+            <div class="field">
+                <label>Doctor ID</label>
+                <input
+                    type="text"
+                    name="doctor_id"
+                    placeholder="Enter doctor ID"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Login to Dashboard →
+            </button>
+
+        </form>
+
+        <a class="back-link" href="{{ url_for('index') }}">
+            ← Back to SmartCare
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
