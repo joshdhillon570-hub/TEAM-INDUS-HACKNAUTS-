@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Dashboard — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container dashboard">
+
+    <div class="dashboard-head">
+        <div>
+            <div class="eyebrow">SMARTCARE · DOCTOR SIDE</div>
+            <h1>Doctor Dashboard</h1>
+            <p>Manage today's patients from one connected queue.</p>
+        </div>
+
+        <a class="secondary-btn" href="{{ url_for('doctor_logout') }}">
+            Logout
+        </a>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Patients waiting</span>
+            <strong>{{ stats.waiting }}</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Current patient</span>
+            <strong>{{ stats.current }}</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>High priority</span>
+            <strong>{{ stats.high_priority }}</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Today's appointments</span>
+            <strong>{{ stats.today }}</strong>
+        </div>
+
+    </div>
+
+
+    <div class="queue-header">
+
+        <div>
+            <div class="eyebrow">LIVE QUEUE</div>
+            <h2>Today's Patients</h2>
+        </div>
+
+        <span class="live-indicator">
+            <i></i> Live
+        </span>
+
+    </div>
+
+
+    <div class="patient-queue">
+
+        {% for patient in patients %}
+
+        <article class="patient-card">
+
+            <div class="patient-token">
+                <span>Token</span>
+                <strong>{{ patient.token }}</strong>
+            </div>
+
+            <div class="patient-main">
+
+                <h3>{{ patient.name }}</h3>
+
+                <p>
+                    Age {{ patient.age }}
+                    · {{ patient.department }}
+                    · {{ patient.time }}
+                </p>
+
+                <p class="symptoms">
+                    {{ patient.symptoms }}
+                </p>
+
+            </div>
+
+            <div class="patient-meta">
+
+                <span class="priority {{ patient.priority|lower }}">
+                    {{ patient.priority }}
+                </span>
+
+                <span>
+                    {{ patient.wait_minutes }} min wait
+                </span>
+
+                <span class="status">
+                    {{ patient.status }}
+                </span>
+
+            </div>
+
+            <div class="patient-actions">
+
+                <a class="secondary-btn"
+                   href="{{ url_for('patient_details', appointment_id=patient.id) }}">
+                    View Patient
+                </a>
+
+                {% if patient.status == 'Waiting' %}
+
+                <form method="POST"
+                      action="{{ url_for('call_patient', appointment_id=patient.id) }}">
+                    <button class="primary-btn" type="submit">
+                        Call Patient
+                    </button>
+                </form>
+
+                {% elif patient.status == 'With Doctor' %}
+
+                <form method="POST"
+                      action="{{ url_for('complete_appointment', appointment_id=patient.id) }}">
+                    <button class="primary-btn" type="submit">
+                        Mark Completed
+                    </button>
+                </form>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+        {% else %}
+
+        <div class="empty-state">
+            No patients in today's queue.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
