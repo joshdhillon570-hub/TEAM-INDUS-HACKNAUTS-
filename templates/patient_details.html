@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Details — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container patient-details">
+
+    <div class="details-head">
+
+        <div>
+            <div class="eyebrow">PATIENT RECORD · DEMO DATA</div>
+
+            <h1>{{ patient.name }}</h1>
+
+            <p>
+                Token {{ patient.token }}
+                · {{ patient.department }}
+                · {{ patient.time }}
+            </p>
+        </div>
+
+        <a class="secondary-btn"
+           href="{{ url_for('doctor_dashboard') }}">
+            ← Back to Queue
+        </a>
+
+    </div>
+
+
+    <div class="details-grid">
+
+        <article class="detail-card">
+
+            <div class="eyebrow">BASIC INFORMATION</div>
+
+            <div class="info-list">
+
+                <div>
+                    <span>Name</span>
+                    <strong>{{ patient.name }}</strong>
+                </div>
+
+                <div>
+                    <span>Age</span>
+                    <strong>{{ patient.age }}</strong>
+                </div>
+
+                <div>
+                    <span>Phone</span>
+                    <strong>{{ patient.phone }}</strong>
+                </div>
+
+                <div>
+                    <span>Blood group</span>
+                    <strong>{{ patient.blood_group or 'Not provided' }}</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="detail-card">
+
+            <div class="eyebrow">CURRENT VISIT</div>
+
+            <h2>Symptoms</h2>
+
+            <p>
+                {{ patient.symptoms }}
+            </p>
+
+            <div class="triage-result">
+
+                <span>Preliminary triage</span>
+
+                <strong class="priority {{ patient.priority|lower }}">
+                    {{ patient.priority }}
+                </strong>
+
+            </div>
+
+            <p class="small-note">
+                Preliminary triage only. This does not diagnose a medical
+                condition. Final priority is decided by healthcare staff.
+            </p>
+
+        </article>
+
+
+        <article class="detail-card">
+
+            <div class="eyebrow">PREVIOUS VISITS</div>
+
+            <h2>Previous Diagnosis</h2>
+
+            <p>
+                {{ patient.previous_diagnosis or 'No previous diagnosis recorded.' }}
+            </p>
+
+            <h2>Reports</h2>
+
+            <p>
+                {{ patient.reports or 'No reports uploaded.' }}
+            </p>
+
+        </article>
+
+
+        <article class="detail-card">
+
+            <div class="eyebrow">CLINICAL NOTES</div>
+
+            <h2>Doctor Notes</h2>
+
+            <p>
+                {{ patient.doctor_notes or 'No doctor notes added yet.' }}
+            </p>
+
+            <h2>Prescription</h2>
+
+            <p>
+                {{ patient.prescription or 'No prescription added yet.' }}
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="details-actions">
+
+        <form method="POST"
+              action="{{ url_for('add_note', appointment_id=patient.id) }}">
+
+            <textarea
+                name="note"
+                placeholder="Add doctor note..."
+                rows="3"
+                required></textarea>
+
+            <button class="secondary-btn" type="submit">
+                Add Doctor Note
+            </button>
+
+        </form>
+
+
+        <form method="POST"
+              action="{{ url_for('add_prescription', appointment_id=patient.id) }}">
+
+            <textarea
+                name="prescription"
+                placeholder="Add prescription..."
+                rows="3"
+                required></textarea>
+
+            <button class="secondary-btn" type="submit">
+                Add Prescription
+            </button>
+
+        </form>
+
+
+        {% if patient.status != 'Completed' %}
+
+        <form method="POST"
+              action="{{ url_for('complete_appointment', appointment_id=patient.id) }}">
+
+            <button class="primary-btn" type="submit">
+                Mark Consultation Complete
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
