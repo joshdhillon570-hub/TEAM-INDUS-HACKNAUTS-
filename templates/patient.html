@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container page-head">
+
+    <div class="eyebrow">PATIENT SIDE</div>
+
+    <h1>SmartCare Patient Portal</h1>
+
+    <p>
+        Use the appointment flow to book a visit and track the queue
+        from your confirmation page.
+    </p>
+
+    <a class="primary-btn" href="{{ url_for('appointment') }}">
+        Book Appointment →
+    </a>
+
+</section>
+
+{% endblock %}
