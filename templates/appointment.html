@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Appointment — SmartCare{% endblock %}
+
+{% block content %}
+
+<section class="container page-head">
+    <div class="eyebrow">PATIENT → APPOINTMENT</div>
+    <h1>Book an Appointment</h1>
+    <p>Enter your details and symptoms. SmartCare will create your appointment and queue token.</p>
+</section>
+
+<section class="container form-section">
+
+    <form method="POST" class="appointment-form">
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Patient Name</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                <input type="number" name="age" min="1" max="120" required>
+            </div>
+
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="tel" name="phone" required>
+            </div>
+
+            <div class="field">
+                <label>Department</label>
+                <select name="department" required>
+                    <option value="">Select department</option>
+                    <option>General Medicine</option>
+                    <option>Cardiology</option>
+                    <option>Orthopedics</option>
+                    <option>Pediatrics</option>
+                    <option>Dermatology</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Doctor</label>
+                <select name="doctor" required>
+                    <option value="">Select doctor</option>
+                    <option>Dr. Sharma</option>
+                    <option>Dr. Mehta</option>
+                    <option>Dr. Singh</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Preferred Date</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div class="field">
+                <label>Preferred Time</label>
+                <input type="time" name="time" required>
+            </div>
+
+            <div class="field full">
+                <label>Symptoms</label>
+                <textarea name="symptoms" rows="4"
+                    placeholder="Example: fever, cough, headache" required></textarea>
+            </div>
+
+            <div class="field full">
+                <label>Previous Medical Information <span>(Optional)</span></label>
+                <textarea name="medical_info" rows="3"
+                    placeholder="Previous visits, medicines or relevant information"></textarea>
+            </div>
+
+        </div>
+
+        <div class="triage-note">
+            <strong>Smart preliminary triage</strong>
+            <p>
+                SmartCare uses the symptoms you enter to assign a preliminary
+                priority level. It does not diagnose a medical condition.
+                Final priority is decided by healthcare staff.
+            </p>
+        </div>
+
+        <button type="submit" class="primary-btn">
+            Confirm Appointment →
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
